@@ -14,9 +14,7 @@
     ["/features", "Features"], ["/how-it-works", "How it works"], ["/solutions", "Solutions"],
     ["/faq", "FAQ"], ["/about", "About"],
   ];
-  var logo = '<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="15" style="fill:var(--primary)"/>' +
-    '<path d="M19 12h19l9 9v31a3 3 0 0 1-3 3H19a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3z" fill="#fff"/><path d="M38 12l9 9H41a3 3 0 0 1-3-3z" fill="#c8d0dc"/>' +
-    '<path d="M26 31v14l12-7z" style="fill:var(--accent)"/><rect x="22" y="23" width="14" height="3" rx="1.5" style="fill:var(--primary)"/></svg>';
+  var logo = '<img src="/static/img/logo.png" alt="' + SITE.name + '" width="440" height="240">';
 
   /* ---------- design (theme) switcher ---------- */
   var THEMES = [
@@ -130,14 +128,14 @@
     items += designMenu();
     items += '<div class="nav-item" id="authSlot"></div>';
     return '<div class="site-header" id="siteHeaderBar"><div class="wrap nav">' +
-      '<a class="logo" href="/" aria-label="' + SITE.name + ' home">' + logo + "<span>" + SITE.name + "</span></a>" +
+      '<a class="logo" href="/" aria-label="' + SITE.name + ' home">' + logo + "</a>" +
       '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>' +
       '<nav class="nav-links" id="navLinks" aria-label="Main">' + items + cta + "</nav></div></div>";
   }
 
   function footer() {
     return '<footer class="site-footer"><div class="wrap"><div class="foot-grid">' +
-      '<div><a class="logo" href="/">' + logo + "<span>" + SITE.name + "</span></a>" +
+      '<div><a class="logo" href="/">' + logo + "</a>" +
       '<p class="about-blurb">Turn YouTube lecture videos into formatted, word-for-word Roman Urdu study notes.</p></div>' +
       '<div><h4>Product</h4><ul><li><a href="/app">Notes tool</a></li><li><a href="/account">My account</a></li><li><a href="/features">Features</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/faq">FAQ</a></li></ul></div>' +
       '<div><h4>Solutions</h4><ul><li><a href="/solutions#students">Students</a></li><li><a href="/solutions#educators">Educators</a></li><li><a href="/solutions#self-learners">Self-learners</a></li></ul></div>' +
