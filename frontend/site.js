@@ -59,6 +59,7 @@
       '<svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>' +
       '<div class="design-menu" id="designMenu" hidden><h4>Choose a design for this site</h4>' +
       '<div role="radiogroup" aria-label="Site design">' + opts + "</div>" +
+      '<button type="button" class="design-custom" id="customBtn">Customize colors</button>' +
       '<p class="fine" style="margin:8px 8px 4px">Your choice is saved in this browser.</p></div></div>';
   }
 
@@ -77,7 +78,10 @@
     document.querySelectorAll(".design-opt").forEach(function (b) {
       b.setAttribute("aria-checked", String(b.getAttribute("data-theme-id") === x.id));
     });
-    if (persist) { try { localStorage.setItem(STORE, x.id); } catch (e) {} }
+    if (persist) {
+      try { localStorage.setItem(STORE, x.id); } catch (e) {}
+      document.dispatchEvent(new Event("sitethemechange"));
+    }
   }
 
   function wireDesignMenu() {
@@ -93,6 +97,10 @@
       }
     }
     btn.addEventListener("click", function () { open(menu.hidden); });
+    document.getElementById("customBtn").addEventListener("click", function () {
+      open(false);
+      window.ThemeCreator.open();
+    });
     document.addEventListener("click", function (e) {
       if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) open(false);
     });
@@ -144,6 +152,11 @@
       '</div><div class="foot-bottom"><span>&copy; ' + new Date().getFullYear() + " " + SITE.name + ". All rights reserved.</span>" +
       "<span>" + SITE.domain + " &middot; Not affiliated with YouTube or Google.</span></div></div></footer>";
   }
+
+  var tc = document.createElement("script");
+  tc.src = "/static/theme-creator.js";
+  tc.defer = true;
+  document.head.appendChild(tc);
 
   var u = document.getElementById("site-util");
   if (u) u.innerHTML = util();
